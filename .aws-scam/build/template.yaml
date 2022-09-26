@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'python3.8 Sample SAM Template for face-sentiment
+
+  '
+Globals:
+  Api:
+    BinaryMediaTypes:
+    - '*~1*'
+  Function:
+    Timeout: 600
+    MemorySize: 1024
+Resources:
+  FaceSentimentJFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Architectures:
+      - x86_64
+      Events:
+        Root:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+        NonRoot:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+      ImageUri: facesentimentjfunction:python3.8-v1
+    Metadata:
+      DockerContext: /Users/jolascua/Development/Courses/MLO4/code/MLO-4/assignments/week-2
+      DockerTag: python3.8-v1
+      Dockerfile: Dockerfile
+      SamResourceId: FaceSentimentJFunction
+Outputs:
+  FaceSentimentJApi:
+    Description: API Gateway endpoint URL for Prod stage
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/
+  FaceSentimentJFunction:
+    Description: Face Sentiment Analysis Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - FaceSentimentJFunction
+      - Arn
+  FaceSentimentJFunctionIamRole:
+    Description: Implicit IAM Role created
+    Value:
+      Fn::GetAtt:
+      - FaceSentimentJFunctionRole
+      - Arn
