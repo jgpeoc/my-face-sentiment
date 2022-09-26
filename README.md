@@ -137,6 +137,7 @@ The SAM CLI can also emulate your application's API. Use the `sam local start-ap
 ```bash
 facebot$ sam local start-api
 facebot$ curl http://localhost:3000/
+facebot$ curl -F file=@/your/path/to/photo.png http://localhost:3000/face-sentiment --output tagged-photo.png
 ```
 
 The SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
