@@ -73,8 +73,7 @@ class Sentiment():
         #The face detection model is already implemented in opencv:
         #https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html
         #Pretrained models: https://github.com/opencv/opencv/tree/3.4/data/haarcascades
-        face_cascade = cv2.CascadeClassifier()
-        self.face_model = face_cascade.load(face_model_path)
+        self.face_model = cv2.CascadeClassifier(face_model_path)
 
 
     def predict(self,frame):
