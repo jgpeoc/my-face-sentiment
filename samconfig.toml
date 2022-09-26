@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "face-sentiment-JG2"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-pcatkpeq1n2w"
+s3_prefix = "face-sentiment-JG2"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = ["FaceSentimentJFunction=681261969843.dkr.ecr.us-east-1.amazonaws.com/facesentimentjg2d7e3a1a6/facesentimentjfunction1d9c08b5repo"]
+disable_rollback = true
+confirm_changeset = true
